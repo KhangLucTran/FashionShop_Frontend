@@ -1,0 +1,226 @@
+/* Layout chính */
+.profile-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("../Assets/bg4.jpg");
+  background-size: cover;
+}
+
+/* Logo Levents */
+.profile-logo {
+  position: absolute;
+  top: 20px; /* Giãn cách xuống một chút */
+  left: 0px; /* Cách lề trái */
+  z-index: 100; /* Luôn nổi phía trên */
+  margin-bottom: 5rem;
+}
+
+.profile-logo .logo {
+  font-size: 1.5rem; /* Kích thước chữ vừa phải */
+  font-weight: 700; /* Đậm hơn để tạo điểm nhấn */
+  color: #000; /* Màu đen xám đậm */
+  text-decoration: none; /* Bỏ gạch chân mặc định */
+  display: inline-block;
+  padding: 8px 12px; /* Khoảng cách xung quanh logo */
+  border-radius: 8px; /* Bo góc mềm mại */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.profile-logo .logo:hover {
+  transform: scale(1.05); /* Tăng kích thước nhẹ */
+}
+
+.profile-logo .logo span {
+  font-size: 1rem; /* Giữ kích thước nhỏ hơn cho biểu tượng bản quyền */
+  vertical-align: top; /* Canh trên cùng */
+  color: #000; /* Màu xám nhạt cho chữ bản quyền */
+}
+
+/* Responsive Logo */
+@media (max-width: 768px) {
+  .profile-logo .logo {
+    font-size: 1.2rem; /* Giảm kích thước logo trên màn hình nhỏ */
+    padding: 6px 10px;
+  }
+}
+/* Container chính */
+.profile-container {
+  background-color: rgba(255, 255, 255, 0.85); 
+  padding: 30px;
+  width: 100%;
+  max-width: 800px; /* Chiều rộng hợp lý */
+  border-radius: 12px; /* Bo góc lớn hơn để trông hiện đại */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Đổ bóng mềm mại */
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-container:hover {
+  transform: translateY(-5px); /* Hiệu ứng nổi lên nhẹ */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Tiêu đề */
+h2 {
+  text-align: center;
+  color: #343a40; /* Màu chữ đậm */
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+}
+
+/* Form layout */
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Hai cột đều nhau */
+  gap: 20px; /* Khoảng cách giữa các ô */
+}
+
+/* Ô thông tin */
+.profile-row {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px; /* Bo góc lớn hơn */
+  border: 1px solid #ced4da;
+  font-size: 0.95rem;
+  background-color: #f8f9fa; /* Màu nền nhạt */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Phần tử chiếm toàn bộ hàng */
+.profile-row.full-width {
+  grid-column: span 2; /* Chiếm cả hai cột */
+}
+
+/* Giới tính */
+.gender-options {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.gender-options label {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #007bff;
+}
+
+/* Nút bấm */
+.profile-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  grid-column: span 2; /* Chiếm cả hai cột */
+}
+
+.save-btn, .cancel-btn {
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  border: none;
+  flex: 1;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+  transform: scale(1.02);
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #e53935;
+  transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr; /* Chuyển thành một cột khi màn hình nhỏ */
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .save-btn, .cancel-btn {
+    width: 100%;
+  }
+}
+/* Thêm lớp cho input khi có lỗi */
+.error-input {
+  border: 1px solid red;
+}
+
+/* Hiển thị thông báo lỗi */
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+/* Giới tính */
+.gender-group {
+  display: flex;
+  gap: 15px; /* Khoảng cách giữa các ô */
+  align-items: center; /* Canh giữa các phần tử */
+  font-size: 0.95rem; /* Đồng nhất với font-size của form */
+}
+
+.gender-label {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem; /* Đồng nhất với label */
+  cursor: pointer; /* Thêm con trỏ khi hover */
+}
+
+.gender-label input {
+  margin-right: 8px; /* Khoảng cách giữa checkbox và label */
+  accent-color: #007bff; /* Màu sắc của radio button */
+}
+
+/* Nâng cấp các radio button */
+input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #007bff; /* Màu sắc chủ đạo của radio button */
+}
+

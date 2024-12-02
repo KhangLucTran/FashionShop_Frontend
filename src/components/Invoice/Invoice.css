@@ -1,0 +1,321 @@
+/* Container chính cho trang hóa đơn */
+.invoice-container {
+    width: 85%;
+    max-width: 1100px;
+    margin: 5rem auto;
+    padding: 30px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Tiêu đề của trang hóa đơn */
+  .invoice-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  /* Trạng thái hóa đơn */
+  .invoice-status {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .invoice-status h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .invoice-status.pending {
+    background-color: #f39c12; /* Màu vàng */
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+  }
+  
+  .invoice-status.completed {
+    background-color: #27ae60; /* Màu xanh lá */
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+  }
+  
+  /* Danh sách các sản phẩm trong hóa đơn */
+  .invoice-items {
+    margin-bottom: 30px;
+  }
+  
+  /* Các sản phẩm trong hóa đơn */
+  .invoice-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 15px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .invoice-item:hover {
+    background-color: #f7f7f7;
+  }
+  
+  /* Hình ảnh sản phẩm */
+  .invoice-item-image-container {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    margin-right: 20px;
+    border-radius: 8px;
+  }
+  
+  .invoice-item-image {
+    object-fit: cover;
+  }
+  
+  /* Chi tiết sản phẩm */
+  .invoice-item-details {
+    flex: 1;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Tiêu đề sản phẩm */
+  .invoice-item-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Mô tả sản phẩm */
+  .invoice-item-description {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  /* Tổng tiền của mỗi sản phẩm */
+  .invoice-item-total {
+    font-weight: bold;
+    color: #2ecc71;
+  }
+  
+  /* Tóm tắt hóa đơn */
+  .invoice-summary {
+    margin-bottom: 30px;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+  }
+  
+  .invoice-summary-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .invoice-summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .invoice-summary-label {
+    font-weight: 600;
+  }
+  
+  .invoice-summary-value {
+    font-weight: 600;
+  }
+  
+  .invoice-summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .invoice-summary-total-value {
+    color: #e74c3c;
+  }
+  
+  /* Thông tin người dùng */
+  .invoice-user-info {
+    margin-bottom: 30px;
+  }
+  
+  .invoice-user-info h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  
+  .invoice-user-info ul {
+    list-style: none;
+    padding: 0;
+    font-size: 16px;
+  }
+  
+  .invoice-user-info li {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .invoice-user-info strong {
+    color: #333;
+  }
+  
+  /* Nút quay lại và hoàn tất */
+  .invoice-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  .invoice-btn {
+    padding: 12px 25px;
+    background-color: #2ecc71;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .invoice-btn:hover {
+    background-color: #27ae60;
+  }
+  
+  /* Nút Quay lại */
+  .invoice-btn-back {
+    padding: 12px 25px;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .invoice-btn-back:hover {
+    background-color: #2980b9;
+  }
+  
+  .invoice-container {
+    padding: 20px;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .invoice-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .invoice-status {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  .invoice-status.pending {
+    background-color: #f5b942;
+    color: #fff;
+  }
+  
+  .invoice-status.completed {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .invoice-summary {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+  }
+  
+  .invoice-recipient-info {
+    margin-bottom: 20px;
+  }
+  
+  .invoice-recipient-info h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .invoice-recipient-info ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .invoice-recipient-info li {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .invoice-details {
+    margin-bottom: 20px;
+  }
+  
+  .invoice-details h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .invoice-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .invoice-item-image {
+    margin-right: 20px;
+  }
+  
+  .invoice-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .invoice-item-info {
+    flex: 1;
+  }
+  
+  .invoice-issued-at {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .invoice-issued-at p {
+    margin: 0;
+  }
+  

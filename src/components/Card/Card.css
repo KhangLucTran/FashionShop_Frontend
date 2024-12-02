@@ -1,0 +1,91 @@
+/* Cấu trúc tổng thể của giỏ hàng */
+.card-list-section {
+  background-color: #f0f0f0; /* Nền của giỏ hàng */
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Thêm bóng cho giỏ hàng */
+  max-width: 100%; /* Giới hạn chiều rộng */
+  height: 100vh;
+  margin: 0 auto; /* Căn giữa */
+  margin-top: 7rem;
+}
+
+/* Tiêu đề giỏ hàng */
+.card-list-title {
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Grid các thẻ sản phẩm */
+.card-list-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Khung loading giỏ hàng */
+.card-list-loading-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Skeleton (loading) cho thẻ sản phẩm */
+.card-list-skeleton-card {
+  width: 200px;
+  height: 250px;
+  background-color: #ddd;
+  border-radius: 8px;
+  animation: pulse 1.5s infinite ease-in-out; /* Animation loading */
+}
+
+/* Nếu giỏ hàng không có sản phẩm */
+.card-list-no-items {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Phần thanh toán */
+.checkout-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Nút thanh toán */
+.checkout-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút thanh toán */
+.checkout-button:hover {
+  background-color: #45a049;
+}
+
+/* Animation khi loading (Skeleton) */
+@keyframes pulse {
+  0% {
+    background-color: #ddd;
+  }
+  50% {
+    background-color: #eaeaea;
+  }
+  100% {
+    background-color: #ddd;
+  }
+}

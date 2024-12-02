@@ -1,0 +1,143 @@
+/* General line item styling */
+.line-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Cân chỉnh các phần tử */
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+  transition: background-color 0.3s ease;
+}
+
+.line-item.selected {
+  background-color: #e0f7fa; /* Nền xanh nhạt khi item được chọn */
+}
+
+/* Checkbox container styling */
+.line-item-checkbox {
+  margin-right: 15px;
+}
+
+.line-item-checkbox-input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.line-item-checkbox-input:checked {
+  background-color: #00796b; /* Màu xanh khi checkbox được chọn */
+}
+
+/* Image styling */
+.line-item-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  border-radius: 8px;
+  object-fit: cover; /* Đảm bảo ảnh không bị méo */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng cho ảnh */
+}
+
+/* Item info styling */
+.line-item-info {
+  flex-grow: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+.line-item-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.line-item-info p {
+  margin: 5px 0;
+}
+
+/* Quantity control styling */
+.line-item-quantity {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-btn {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  margin: 0 8px;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-btn:hover {
+  background-color: #004d40;
+}
+
+.line-item-info span {
+  margin: 0 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Delete button styling */
+.delete-btn {
+  background-color: #ccc; /* Màu cam nhẹ nhàng cho nút xóa */
+  color: #000;
+  border: none;
+  border-radius: 20%; /* Bo tròn nút */
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng cho nút */
+}
+
+/* Hover state - tăng độ sáng khi hover */
+.delete-btn:hover {
+  background-color: #000; /* Màu cam đậm khi hover */
+  transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+
+/* Active state - giảm độ sáng khi click */
+.delete-btn:active {
+  background-color: #d35400; /* Màu cam tối khi click */
+  transform: scale(0.95); /* Thu nhỏ nhẹ khi click */
+}
+
+/* Checkout section */
+.checkout-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.checkout-button {
+  padding: 12px 24px;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-button:disabled {
+  background-color: #b2dfdb;
+  cursor: not-allowed;
+}
+
+.checkout-button:hover:enabled {
+  background-color: #004d40; /* Đổi màu khi hover */
+}

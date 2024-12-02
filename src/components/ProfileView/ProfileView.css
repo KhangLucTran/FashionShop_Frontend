@@ -1,0 +1,214 @@
+/* Profile Container */
+.profile-container {
+  width: 80%;
+  margin: 50px auto;
+  background-color: rgba(255, 255, 255, 0.85); 
+  border-radius: 15px;
+  margin-top: 6rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-container.highlight {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.profile-logo {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px 0;
+}
+
+
+.profile-logo a {
+  text-decoration: none;
+  color: white;
+}
+
+.profile-logo a span {
+  color: #ff4500;
+}
+
+/* Avatar Section */
+.avatar-section {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Đảm bảo avatar là hình tròn */
+  object-fit: cover;
+  border: 5px solid #ddd;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+  border-color: #007bff;
+  transform: scale(1.05); /* Hiệu ứng phóng to nhẹ */
+}
+/* Chỉnh sửa nút nằm dưới Avatar */
+.edit-avatar-btn {
+  display: inline-block;
+  margin-top: 10px; /* Đưa nút chỉnh sửa ngay bên dưới avatar */
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-avatar-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); /* Hiệu ứng nổi khi hover */
+}
+/* Nếu có nút tải ảnh lên */
+.upload-avatar-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.upload-avatar-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* Info Section */
+.info-section {
+  text-align: left;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.info-section h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 16px;
+  color: #555;
+  border-bottom: 1px dotted #ddd;
+  position: relative; /* Để tương tác hover */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.info-list li:last-child {
+  border-bottom: none; /* Không có đường border ở dòng cuối cùng */
+}
+
+.info-list li strong {
+  color: #000;
+  font-weight: bold;
+  width: 30%; /* Đảm bảo các nhãn thẳng hàng */
+}
+
+.info-list li span {
+  width: 70%;
+  text-align: left;
+  color: #666;
+  overflow-wrap: break-word;
+}
+
+.info-list li:hover {
+  background-color: #f0f8ff; /* Hiệu ứng đổi màu nền khi hover */
+  cursor: pointer;
+  transform: translateX(5px); /* Dịch nhẹ dòng */
+}
+
+.info-list li:hover strong,
+.info-list li:hover span {
+  color: #007bff; /* Đổi màu chữ khi hover */
+  font-weight: bold;
+}
+
+/* Edit Profile Button */
+.edit-profile-btn {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-profile-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+/* Profile Overlay */
+.profile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.profile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .info-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .info-list li strong,
+  .info-list li span {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .edit-profile-btn {
+    width: 100%;
+    padding: 15px;
+  }
+}

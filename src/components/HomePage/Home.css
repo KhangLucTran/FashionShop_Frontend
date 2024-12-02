@@ -1,0 +1,127 @@
+.homePage {
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    padding-top: 4rem; /* Đảm bảo nội dung không bị che khuất bởi header */
+    box-sizing: border-box;
+    transition: background-image 1s ease-in-out; /* Hiệu ứng chuyển mượt */
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3); /* Lớp phủ màu đen, có độ trong suốt */
+    z-index: 1; /* Đảm bảo lớp phủ nằm trên background */
+  }
+
+  .homePage .homePage_content {
+    position: absolute;
+    top: 50%;
+    left: 10%; /* Giữ bên trái màn hình */
+    transform: translateY(-50%); /* Căn giữa theo chiều dọc */
+    color: white;
+    max-width: 600px; /* Điều chỉnh chiều rộng tối đa */
+    margin: 0 auto; /* Căn giữa */
+    line-height: 1.6; /* Tăng khoảng cách dòng cho dễ đọc */
+    font-size: 1rem; /* Kích thước chữ */
+    z-index: 2; /* Đảm bảo chữ nằm trên lớp phủ */
+    font-family: "Poppins", sans-serif;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Hiệu ứng đổ bóng */
+  }
+  .homePage .homePage_content h2{
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .homePage_content {
+    transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi mượt */
+  }
+
+  
+  /* Container chính */
+.intro-container {
+  position: relative;
+  text-align: center;
+  margin: 50px auto;
+  max-width: 800px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Animation chung */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Di chuyển từ dưới lên */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Trả về vị trí ban đầu */
+  }
+}
+
+/* Tiêu đề */
+.intro-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+  opacity: 0; /* Bắt đầu ẩn */
+  animation: fadeInUp 1s ease-out forwards; /* Animation */
+  animation-delay: 0.2s; /* Trễ một chút */
+}
+
+/* Đoạn văn */
+.intro-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #fff;
+  opacity: 0; /* Bắt đầu ẩn */
+  animation: fadeInUp 1.5s ease-out forwards; /* Animation */
+  animation-delay: 0.5s; /* Trễ hơn tiêu đề */
+}
+
+/* Container chính */
+.intro-container {
+  position: relative;
+  text-align: center;
+  margin: 50px auto;
+  max-width: 800px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Animation khi hover */
+/* Animation cho từng chữ */
+.letter {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Zoom khi hover */
+.letter:hover {
+  transform: scale(1.5); /* Phóng to */
+  color: #ccc;/* Đổi màu chữ khi hover */
+}
+
+/* Cụm từ "Redefining Trends" có màu khác ban đầu */
+.word .letter {
+  /* color: #007bff; */
+  color: #fff;
+}
+
+.word .letter:hover {
+  color: #ccc; /* Màu nổi bật hơn khi hover */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Thêm bóng chữ */
+}
+
+.admin-home-container{
+  width: 100%;
+  height: 100vh;
+  margin-top: 7rem;
+  background-color: #fff;
+}

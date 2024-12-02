@@ -1,0 +1,167 @@
+/* Tổng thể Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: transparent; /* Nền hoàn toàn trong suốt */
+  color: #fff; /* Màu chữ chính */
+  font-family: "Poppins", sans-serif;
+  position: fixed; /* Giữ header cố định ở trên cùng */
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 10x;
+  z-index: 1000;
+  height: 5rem; /* Đảm bảo chiều cao header phù hợp */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Thay đổi khi cuộn */
+.header.scrolled {
+  color: black; /* Thay đổi màu chữ thành đen */
+  background-color: white;
+  border-bottom: 2px solid #EEEEEE;
+}
+/* Logo */
+.logo {
+  margin-left: 4rem;
+}
+.logo a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: inherit; /* Kế thừa màu từ header */
+  letter-spacing: 1px;
+  transition: color 0.3 ease;
+}
+
+.logo a:hover {
+  color: #000;
+}
+
+/* Menu điều hướng */
+.nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: inherit; /* Kế thừa màu từ header */
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 5px;
+  border-radius: 2px;
+  transition: color 0.3s ease;
+}
+.nav_icon{
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+  font-size: 1.3rem;
+}
+.nav_icon a{
+  color: inherit; /* Kế thừa màu từ header */
+  transition: color 0.3s ease; /* Chuyển đổi màu mượt */
+}
+.nav_icon a:hover{
+  color: #000;
+}
+.nav ul li a:hover {
+  color: #000;
+  border-bottom: 1px #000 solid;
+}
+
+/* Nút đăng nhập và đăng ký */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: 500;
+}
+
+/* Nút đăng nhập */
+button.login {
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #333;
+}
+
+button.login:hover {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+/* Nút đăng ký */
+button.signup {
+  background-color: #333;
+  color: white;
+  border: 1px solid #333;
+}
+
+button.signup:hover {
+  background-color: #000;
+}
+
+
+/* Định dạng container của menu */
+/* Định vị cho icon */
+.account-menu-container {
+  position: relative; /* Giữ container có position relative */
+  margin-right: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute; /* Đặt menu ở vị trí tuyệt đối */
+  top: 100%; /* Đặt menu xuống ngay bên dưới icon */
+  right: 0; /* Canh phải của icon */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 200px; /* Chiều rộng của menu */
+}
+
+/* Các mục trong dropdown */
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu ul li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu ul li:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}

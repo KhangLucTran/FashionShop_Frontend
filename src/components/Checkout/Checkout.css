@@ -1,0 +1,224 @@
+/* Toàn bộ phần checkout container */
+.checkout-container {
+    max-width: 900px;
+    margin: 6rem auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+  }
+  
+  /* Tiêu đề chính */
+  .checkout-title {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Danh sách các sản phẩm trong giỏ hàng */
+  .checkout-items {
+    margin-bottom: 30px;
+  }
+  
+  .checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .checkout-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hình ảnh sản phẩm */
+  .checkout-item-image-container {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .checkout-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .checkout-item-image-container:hover .checkout-item-image {
+    transform: scale(1.1);
+  }
+  
+  /* Chi tiết sản phẩm */
+  .checkout-item-details {
+    flex: 1;
+    padding-left: 20px;
+  }
+  
+  .checkout-item-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .checkout-item-description {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 6px;
+  }
+  
+  .checkout-item-total {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-top: 10px;
+  }
+  
+  /* Phần tổng cộng thanh toán */
+  .checkout-summary {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+  }
+  
+  .checkout-summary-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .checkout-summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .checkout-summary-item:last-child {
+    border-bottom: none;
+  }
+  
+  .checkout-summary-label {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .checkout-summary-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .checkout-summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    padding-top: 20px;
+    border-top: 2px solid #f1f1f1;
+  }
+  
+  .checkout-summary-total-value {
+    color: #e74c3c;
+    font-size: 20px;
+  }
+  
+  /* Nút thanh toán */
+  .checkout-action {
+    text-align: center;
+  }
+  
+  .checkout-btn {
+    padding: 15px 40px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .checkout-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+  }
+  
+  /* Thêm hiệu ứng focus cho nút thanh toán */
+  .checkout-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px 3px rgba(52, 152, 219, 0.6);
+  }
+  
+
+  /* Thông tin cá nhân */
+.checkout-user-info {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+  }
+  
+  .checkout-user-info h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .checkout-user-info ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .checkout-user-info li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .checkout-user-info li:last-child {
+    border-bottom: none;
+  }
+  
+  .checkout-user-info strong {
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .checkout-user-info .address-detail {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .checkout-user-info .address-detail br {
+    display: inline-block;
+  }

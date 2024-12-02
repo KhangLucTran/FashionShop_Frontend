@@ -1,0 +1,86 @@
+.confirm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .confirm-modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 500px;
+    height: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .confirm-modal h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .confirm-modal-actions {
+    display: flex;
+    justify-content: space-between; /* Chỉnh lại để các nút cách xa nhau */
+    margin-top: 20px;
+  }
+  
+  .btn-continue,
+  .btn-leave {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 45%; /* Đảm bảo cả hai nút có kích thước giống nhau */
+  }
+  
+  .btn-continue {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .btn-continue:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-leave {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .btn-leave:hover {
+    background-color: #e53935;
+  }
+  
+  .btn-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Tăng kích thước chữ "X" */
+    color: #aaa; /* Màu sắc ban đầu của nút */
+    transition: color 0.3s ease, transform 0.3s ease; /* Hiệu ứng khi hover */
+  }
+  
+  .btn-close:hover {
+    color: #333; /* Màu khi hover */
+    transform: scale(1.1); /* Tạo hiệu ứng phóng to khi hover */
+  }
+  
+  .btn-close:focus {
+    outline: none; /* Xóa viền khi focus */
+  }

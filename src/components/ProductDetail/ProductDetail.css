@@ -1,0 +1,238 @@
+/* Tổng quan về phần chi tiết sản phẩm */
+.product-detail-section {
+  background-color: #f4f4f4;
+  padding: 3rem 0;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.product-detail-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap:3rem
+}
+
+/* Hình ảnh sản phẩm chính */
+.product-image {
+  flex: 1;
+  max-width: 45%; /* Chiếm 45% màn hình */
+  height: 100%;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+/* Phần thumbnail ảnh cuộn dọc */
+.product-gallery {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  height:100vh;
+  overflow-y: auto; /* Cuộn khi có nhiều ảnh */
+}
+
+.product-thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-thumbnail:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Thông tin sản phẩm */
+.product-info {
+  flex: 2;
+  margin-top: 5rem;
+  margin-right: 5rem;
+  max-width: 55%; /* Chiếm 55% màn hình */
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.product-price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.product-options {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.product-size, .product-color {
+  margin-bottom: 1rem;
+}
+
+.product-size label, .product-color label {
+  font-weight: bold;
+  color: #555;
+  font-size: 1rem;
+}
+
+#size, #color {
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+.product-size select:focus, .product-color select:focus {
+  border-color: #000;
+  outline: none;
+}
+
+/* Nút "Thêm vào giỏ" */
+.add-to-cart-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.quantity-selector button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.quantity-selector button:hover {
+  color: #e64a19;
+}
+
+.quantity-selector input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  color: #333;
+  padding: 0.25rem;
+}
+
+/* Nút "Mua ngay" */
+.product-btn {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #333;
+  color: white;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.product-btn:hover {
+  background-color: #666;
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Các hiệu ứng chuyển động */
+.product-btn:active {
+  transform: scale(1.01);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-detail-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .product-info {
+    max-width: 100%;
+  }
+
+  .product-image {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-title {
+    font-size: 1.5rem;
+  }
+
+  .product-price {
+    font-size: 1.4rem;
+  }
+
+  .product-btn {
+    padding: 10px 20px;
+  }
+}
+
+.product-category,
+.product-stock {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+
+.heart-icon {
+  font-size: 24px;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.heart-icon.favorite {
+  color: red;
+}
+
+.heart-icon:hover {
+  color: red;
+}
