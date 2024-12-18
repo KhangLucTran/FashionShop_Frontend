@@ -16,8 +16,8 @@ const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { userData } = location.state || {};
-  const [showModal, setShowModal] = useState(false);
   const token = getToken();
+  const [showModal, setShowModal] = useState(false);
 
   const [formData, setFormData] = useState({
     email: userData?.email || "",
@@ -35,7 +35,7 @@ const Profile = () => {
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
 
-  // Lấy danh sách tỉnh từ localStorage hoặc API
+  // Fetch provinces with caching and loading state
   useEffect(() => {
     const fetchProvinces = async () => {
       const cachedProvinces = localStorage.getItem("provinces");
@@ -57,7 +57,7 @@ const Profile = () => {
     fetchProvinces();
   }, [token]);
 
-  // Fetch quận huyện khi tỉnh thay đổi, sử dụng debounce để tránh gọi API quá nhiều lần
+  // Use useCallback to avoid re-creating the debounce function on every render
   const fetchDistricts = useCallback(
     debounce(async (provinceId) => {
       if (provinceId) {
@@ -77,11 +77,12 @@ const Profile = () => {
     [token] // Ensure token is included in the dependencies
   );
 
+  // Fetch districts when province changes
   useEffect(() => {
     fetchDistricts(formData.province);
   }, [formData.province, fetchDistricts]);
 
-  // Kiểm tra độ tuổi, chỉ khi ngày sinh thay đổi
+  // Check age based on birthday
   useEffect(() => {
     const checkAge = () => {
       if (formData.birthday) {
@@ -108,10 +109,10 @@ const Profile = () => {
       }
     };
     checkAge();
-  }, [formData.birthday]); // Chỉ khi birthday thay đổi
+  }, [formData.birthday]);
 
-  // Kiểm tra số điện thoại
-  const validatePhone = (phone) => {
+  // Phone validation
+  const validatePhone = useCallback((phone) => {
     const regex = /^0\d{9}$/;
     if (!regex.test(phone)) {
       setErrors((prev) => ({
@@ -124,10 +125,10 @@ const Profile = () => {
         return rest;
       });
     }
-  };
+  }, []);
 
-  // Kiểm tra tên tài khoản
-  const validateUsername = (username) => {
+  // Username validation
+  const validateUsername = useCallback((username) => {
     if (!username.trim()) {
       setErrors((prev) => ({
         ...prev,
@@ -139,30 +140,22 @@ const Profile = () => {
         return rest;
       });
     }
-  };
+  }, []);
 
-  // Xử lý thay đổi input
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
 
-    // Kiểm tra các trường khi thay đổi
-    if (name === "mobilePhone") {
-      validatePhone(value);
-    }
-    if (name === "username") {
-      validateUsername(value);
-    }
+    // Validate the relevant fields on change
+    if (name === "mobilePhone") validatePhone(value);
+    if (name === "username") validateUsername(value);
   };
 
-  // Gửi dữ liệu cập nhật
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const updateData = {
       username: formData.username,
       province: provinces.find((p) => p.provinceId === formData.province)?.name,
@@ -175,8 +168,7 @@ const Profile = () => {
 
     try {
       setLoading(true);
-      const response = await updateProfile(updateData, token);
-      console.log("Cập nhật thành công:", response);
+      await updateProfile(updateData, token);
       navigate("/profile-view");
     } catch (error) {
       console.error("Cập nhật thất bại:", error);
@@ -185,23 +177,15 @@ const Profile = () => {
     }
   };
 
-  // Xử lý khi nhấn nút hủy
-  const handleCancelButton = () => {
-    setShowModal(true);
-  };
+  const handleCancelButton = () => setShowModal(true);
 
-  // Tiếp tục chỉnh sửa
-  const handleContinue = () => {
-    setShowModal(false); // Đóng modal và tiếp tục chỉnh sửa
-  };
+  const handleContinue = () => setShowModal(false);
 
-  // Rời khỏi trang
   const handleLeave = () => {
-    setShowModal(false); // Đóng modal và chuyển về trang profile-view
+    setShowModal(false);
     navigate("/profile-view");
   };
 
-  // Format lại giá trị ngày tháng
   const formattedBirthday = useMemo(() => {
     if (!formData.birthday) return "";
     const parsedDate = parseISO(formData.birthday);
@@ -219,7 +203,6 @@ const Profile = () => {
           </div>
           <h2>Chỉnh sửa hồ sơ</h2>
           <form onSubmit={handleSubmit}>
-            {/* Email */}
             <div className="profile-row">
               <label>Email (Không thay đổi)</label>
               <input
@@ -229,7 +212,6 @@ const Profile = () => {
                 readOnly
               />
             </div>
-            {/* Username */}
             <div className="profile-row">
               <label>Tên tài khoản</label>
               <input
@@ -245,7 +227,6 @@ const Profile = () => {
                 <span className="error-message">{errors.username}</span>
               )}
             </div>
-            {/* Ngày sinh */}
             <div className="profile-row">
               <label>Ngày sinh</label>
               <input
@@ -259,8 +240,6 @@ const Profile = () => {
                 <span className="error-message">{errors.birthday}</span>
               )}
             </div>
-
-            {/* Tỉnh */}
             <div className="profile-row">
               <label>Tỉnh</label>
               <select
@@ -269,7 +248,6 @@ const Profile = () => {
                 onChange={handleChange}
                 required
               >
-                console.log(formData.province)
                 <option value="">Vui lòng chọn một tỉnh</option>
                 {provinces.map((province) => (
                   <option key={province.provinceId} value={province.provinceId}>
@@ -278,7 +256,6 @@ const Profile = () => {
                 ))}
               </select>
             </div>
-            {/* Quận/Huyện */}
             <div className="profile-row">
               <label>Quận/Huyện</label>
               <select
@@ -296,7 +273,6 @@ const Profile = () => {
                 ))}
               </select>
             </div>
-            {/* Chi tiết địa chỉ */}
             <div className="profile-row">
               <label>Chi tiết địa chỉ</label>
               <input
@@ -308,7 +284,6 @@ const Profile = () => {
                 required
               />
             </div>
-            {/* Số điện thoại */}
             <div className="profile-row">
               <label>Điện thoại di động</label>
               <input
@@ -324,7 +299,6 @@ const Profile = () => {
                 <span className="error-message">{errors.mobilePhone}</span>
               )}
             </div>
-            {/* Giới tính */}
             <div className="profile-row">
               <label>Giới tính</label>
               <div className="gender-group">
@@ -360,7 +334,6 @@ const Profile = () => {
                 </label>
               </div>
             </div>
-            {/* Nút hành động */}
             <div className="profile-actions">
               <button type="submit" className="save-btn">
                 Xác nhận
@@ -378,12 +351,11 @@ const Profile = () => {
         {loading && <p>Đang tải dữ liệu...</p>}
       </div>
 
-      {/* Modal */}
       <ConfirmModal
         showModal={showModal}
-        onClose={() => setShowModal(false)} // Đóng modal
-        onContinue={handleContinue} // Tiếp tục chỉnh sửa
-        onLeave={handleLeave} // Rời khỏi trang
+        onClose={() => setShowModal(false)}
+        onContinue={handleContinue}
+        onLeave={handleLeave}
       />
       <Footer />
     </>

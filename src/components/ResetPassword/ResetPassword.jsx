@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./ResetPassword.css"; // Sử dụng CSS chung
 import { useLocation, useNavigate } from "react-router-dom";
+import { showSuccessToast, showErrorToast } from "../Toast/Toast";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -38,7 +39,7 @@ const ResetPassword = () => {
       );
 
       console.log("API Response:", response.data);
-      alert("Mật khẩu đã được đặt lại thành công!");
+      showSuccessToast("Mật khẩu được thay đổi thành công!");
       navigate("/login");
     } catch (err) {
       console.error("API Error:", err.response?.data || err.message);

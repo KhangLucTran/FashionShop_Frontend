@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // Thêm useNavigate
+import React, { useState, useEffect, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getUserData } from "../../services/APIServices";
 import { getToken } from "../../services/localStorageService";
@@ -7,54 +7,53 @@ import "./Checkout.css";
 
 const Checkout = () => {
   const { state } = useLocation();
-  const selectedCartItems = state?.selectedCartItems || []; // Chỉ lấy các sản phẩm đã chọn
+  const selectedCartItems = state?.selectedCartItems || [];
   const cartId = state?.cartId;
   const [userData, setUserData] = useState(null);
-  const token = getToken(); // Lấy token từ localStorage
-  const navigate = useNavigate(); // Khởi tạo navigate
+  const token = getToken();
+  const navigate = useNavigate();
 
+  // Lấy thông tin người dùng khi token có sẵn
   useEffect(() => {
     if (token) {
       getUserData(token)
-        .then((data) => setUserData(data))
+        .then(setUserData)
         .catch((error) => console.error("Error fetching user data:", error));
     }
   }, [token]);
 
-  const calculateTotalPrice = () => {
-    return selectedCartItems.reduce((total, item) => total + item.total, 0);
-  };
+  // Tính tổng giá trị giỏ hàng
+  const totalPrice = useMemo(
+    () => selectedCartItems.reduce((total, item) => total + item.total, 0),
+    [selectedCartItems]
+  );
 
-  const totalWithShipping = calculateTotalPrice() + 50000;
+  const totalWithShipping = totalPrice + 50000;
 
+  // Hàm xử lý thanh toán
   const handleCheckout = async () => {
     if (!userData || selectedCartItems.length === 0) {
       alert("Vui lòng kiểm tra lại thông tin giỏ hàng và người dùng.");
       return;
     }
-    const lineItemIds = selectedCartItems.map((item) => item.product._id);
-    console.log("lineItemsIds: ", lineItemIds);
-    console.log("total:", totalWithShipping);
+
     try {
       const response = await axios.post(
         "http://localhost:5000/api/invoice",
         {
-          cartId: cartId,
+          cartId,
           userId: userData._id,
-          lineItemIds: lineItemIds,
+          lineItemIds: selectedCartItems.map((item) => item._id),
           totalAmount: totalWithShipping,
         },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
 
       if (response.data.invoice) {
-        console.log(response.data.invoice);
         navigate(`/invoice/${response.data.invoice._id}`, {
-          state: { userData, selectedCartItems }, // Truyền dữ liệu qua state
+          state: { userData, selectedCartItems },
         });
       } else {
         alert("Có lỗi xảy ra khi tạo hóa đơn.");
@@ -123,10 +122,8 @@ const Checkout = () => {
               {userData.profileId?.numberphone || "Chưa cập nhật"}
             </li>
             <li>
-              <strong>Địa chỉ:</strong> {userData?.address?.detail}
-              <br />
-              {userData?.address?.district}
-              <br />
+              <strong>Địa chỉ:</strong> {userData?.address?.detail} <br />{" "}
+              {userData?.address?.district} <br />{" "}
               {userData?.address?.province || "Chưa cập nhật"}
             </li>
           </ul>
@@ -134,12 +131,13 @@ const Checkout = () => {
       ) : (
         <p>Đang tải thông tin người dùng...</p>
       )}
+
       <div className="checkout-summary">
         <h2 className="checkout-summary-title">Tổng cộng</h2>
         <div className="checkout-summary-item">
           <span className="checkout-summary-label">Tổng tiền sản phẩm</span>
           <span className="checkout-summary-value">
-            {calculateTotalPrice().toLocaleString()} VND
+            {totalPrice.toLocaleString()} VND
           </span>
         </div>
         <div className="checkout-summary-item">

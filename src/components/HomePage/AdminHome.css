@@ -1,122 +1,135 @@
-/* Tổng thể trang Admin */
-.admin-home-container {
-    padding: 20px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .admin-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #333;
-  }
-  
-  /* Quản lý User */
-  .user-management {
-    margin-bottom: 40px;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
-  }
-  
-  .user-form {
-    margin-bottom: 20px;
-  }
-  
-  .user-form input {
-    padding: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    width: 250px;
-    box-sizing: border-box;
-  }
-  
-  .add-btn {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .add-btn:hover {
-    background-color: #000;
-  }
-  
-  .user-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .user-item {
-    padding: 10px;
-    background-color: #f9f9f9;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .delete-btn {
-    background-color: red;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .delete-btn:hover {
-    background-color: darkred;
-  }
-  
-  /* Quản lý Sản phẩm */
-  .product-management {
-    margin-top: 40px;
-  }
-  
-  .product-form input {
-    padding: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    width: 250px;
-    box-sizing: border-box;
-  }
-  
-  .product-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .product-item {
-    padding: 10px;
-    background-color: #f9f9f9;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .section-divider {
-    margin: 40px 0;
-    border-top: 2px solid #ddd;
-  }
-  
+/* Bao quát toàn bộ trang AdminHome */
+.admin-home {
+  font-family: 'Georgia', serif; /* Font chữ cổ điển */
+  padding: 30px;
+  background-color: #fff; /* Màu nền cơ bản */
+  background-blend-mode: multiply;
+  border-radius: 10px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Đổ bóng đậm hơn */
+  margin: 20px auto;
+  margin-top: 5rem;
+  max-width: 1350px;
+  min-height: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 2px solid #ccc; /* Viền vintage */
+}
+
+/* Tiêu đề */
+.admin-home h1 {
+  font-size: 2.8rem;
+  color: #000; /* Xám đậm */
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 10px 20px; /* Thêm khoảng cách bên trong */
+  font-weight: bold; 
+  text-shadow: 1px 1px 2px #000; /* Hiệu ứng chữ nổi */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+  display: inline-block; /* Đảm bảo chiều rộng tiêu đề gọn trong nội dung */
+  transition: all 0.3s ease; /* Thêm hiệu ứng mượt khi hover */
+}
+
+/* Layout tổng với sidebar và nội dung */
+.admin-home__layout {
+  display: flex;
+  flex-direction: row; /* Sidebar nằm bên trái */
+  gap: 20px;
+}
+
+/* Sidebar */
+.admin-home__sidebar {
+  width: 250px;
+  background-color: #f4f4f4; /* Xám vintage */
+  border-right: 3px solid #999; /* Viền đậm hơn */
+  padding: 15px;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1); /* Bóng đổ vintage */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Tab trong sidebar */
+.admin-home__sidebar .tab {
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000; /* Xám trung tính */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #fff; /* Trắng vintage */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Hiệu ứng hover cho tab */
+.admin-home__sidebar .tab:hover {
+  background-color: #000; /* Đen vintage */
+  color: #fff; /* Trắng */
+  border-color: #333;
+  transform: translateY(-3px); /* Nâng lên khi hover */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Tab đang được chọn */
+.admin-home__sidebar .tab.active {
+  background-color: #000; /* Đen vintage */
+  color: #fff; /* Trắng */
+  border-color: #333;
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Bóng đổ mạnh hơn */
+}
+
+/* Nội dung hiển thị */
+.admin-home__content {
+  flex-grow: 1;
+  background-color: #fefefe; /* Trắng vintage */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng vintage */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 2px solid #ccc; /* Viền nhẹ */
+}
+
+/* Đang tải hoặc lỗi */
+.admin-home__content > p {
+  text-align: center;
+  font-size: 16px;
+  color: #555; /* Xám trung tính */
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+/* Danh sách nội dung */
+.admin-home__content .user-list,
+.admin-home__content .product-list {
+  overflow-y: auto;
+  max-height: 500px;
+  padding-right: 10px;
+  background-color: #f8f8f8; /* Xám rất nhạt */
+  border-radius: 6px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiệu ứng lõm */
+}
+
+/* Điều chỉnh thanh cuộn (scrollbar) */
+.admin-home__content .user-list::-webkit-scrollbar,
+.admin-home__content .product-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-home__content .user-list::-webkit-scrollbar-thumb,
+.admin-home__content .product-list::-webkit-scrollbar-thumb {
+  background-color: #aaa; /* Xám vintage */
+  border-radius: 4px;
+  border: 1px solid #888; /* Tạo viền cho thanh cuộn */
+}
+
+

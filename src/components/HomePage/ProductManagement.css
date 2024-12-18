@@ -1,0 +1,241 @@
+/* Bao quát toàn bộ ProductManagement */
+.custom-product-management {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.custom-section-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Input tìm kiếm sản phẩm */
+.custom-product-management input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.custom-product-management input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Danh sách sản phẩm */
+.custom-product-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 400px;  /* Đặt chiều cao tối đa cho danh sách */
+    overflow-y: auto;  /* Hiển thị thanh cuộn khi nội dung vượt quá chiều cao */
+}
+
+/* Mỗi item sản phẩm */
+.custom-product-list li {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;  /* Chia thành 4 cột: ảnh, tên sản phẩm, nút xóa, nút xem chi tiết */
+    align-items: center;
+    padding: 12px 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 14px;
+}
+
+.custom-product-list li:hover {
+    background-color: #f0f8ff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Căn chỉnh thông tin sản phẩm */
+.custom-product-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Căn chỉnh ảnh sản phẩm */
+.custom-product-list-image {
+    width: 50px;  /* Thay đổi kích thước ảnh nếu cần */
+    height: 50px; /* Thay đổi kích thước ảnh nếu cần */
+    object-fit: cover;  /* Đảm bảo ảnh không bị méo */
+    border-radius: 4px;
+}
+
+/* Tên sản phẩm */
+.custom-product-info span {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Nút xóa sản phẩm */
+.custom-delete-btn,
+.custom-view-product-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    width: 100px;  /* Đảm bảo tất cả nút có cùng chiều rộng */
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Nút xóa */
+.custom-delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+}
+
+.custom-delete-btn:hover {
+    background-color: #c82333;
+}
+
+.custom-delete-btn:active {
+    background-color: #bd2130;
+}
+
+.custom-delete-btn:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(220, 53, 69, 0.5);
+}
+
+/* Nút xem chi tiết */
+.custom-view-product-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.custom-view-product-btn:hover {
+    background-color: #0056b3;
+}
+
+.custom-view-product-btn:active {
+    background-color: #004085;
+}
+
+.custom-view-product-btn:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Căn chỉnh các nút trong cùng một dòng */
+.custom-product-list li button {
+    display: inline-block;
+    width: 100px;  /* Đảm bảo tất cả các nút có chiều rộng bằng nhau */
+}
+
+/* Hiển thị tổng số lượng sản phẩm */
+.custom-total-products {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+ /* Form thêm sản phẩm */
+/* Bao quát form */
+.new-add-product-form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tiêu đề */
+  .new-form-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Nhóm input */
+  .new-form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Nhãn */
+  .new-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 5px;
+  }
+  
+  /* Input và textarea */
+  .new-form-input,
+  .new-form-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Khi focus */
+  .new-form-input:focus,
+  .new-form-textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  /* Textarea */
+  .new-form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* Input file */
+  .new-form-file-input {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  /* Nút submit */
+  .new-submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .new-submit-btn:hover {
+    background-color: #218838;
+  }
+  
+  .new-submit-btn:active {
+    background-color: #1e7e34;
+  }
+  
+  .new-submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  }
+
+

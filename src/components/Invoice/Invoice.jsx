@@ -2,25 +2,24 @@ import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { getToken } from "../../services/localStorageService";
+import CommentForm from "../CommentForm/CommentForm"; // Đường dẫn tới component CommentForm
 import "./Invoice.css";
 
 const Invoice = () => {
-  const { invoiceId } = useParams(); // Lấy ID hóa đơn từ URL
-  const { state } = useLocation(); // Lấy dữ liệu từ state
+  const { invoiceId } = useParams();
+  const { state } = useLocation();
   const [invoice, setInvoice] = useState(null);
-  const token = getToken(); // Lấy token từ localStorage
+  const [showCommentForm, setShowCommentForm] = useState(false); // State để điều khiển hiển thị form đánh giá
+  const token = getToken();
 
   useEffect(() => {
     if (token) {
-      // Gửi yêu cầu lấy hóa đơn từ backend kèm token trong header
       axios
         .get(`http://localhost:5000/api/invoice/get-invoice/${invoiceId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`, // Gửi token trong header Authorization
-          },
+          headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
-          setInvoice(response.data.invoice); // Lưu dữ liệu hóa đơn vào state
+          setInvoice(response.data.invoice);
         })
         .catch((error) => {
           console.error("Error fetching invoice:", error);
@@ -32,11 +31,16 @@ const Invoice = () => {
     return <p>Đang tải hóa đơn...</p>;
   }
 
-  const { userData, selectedCartItems } = state; // Lấy userData và selectedCartItems từ state
+  const { userData, selectedCartItems } = state;
 
   // Xác định lớp trạng thái hóa đơn
   const invoiceStatusClass =
     invoice.status === "Pending" ? "pending" : "completed";
+
+  // Hàm để hiển thị form đánh giá
+  const handleShowCommentForm = () => {
+    setShowCommentForm(true); // Hiển thị form khi nhấn nút đánh giá
+  };
 
   return (
     <div className="invoice-container">
@@ -48,7 +52,6 @@ const Invoice = () => {
         <h2>Tổng cộng: {invoice.totalAmount.toLocaleString()} VND</h2>
       </div>
 
-      {/* Hiển thị thông tin người dùng */}
       <div className="invoice-recipient-info">
         <h3>Thông tin người nhận:</h3>
         <ul>
@@ -75,8 +78,8 @@ const Invoice = () => {
             <li key={index} className="invoice-item">
               <div className="invoice-item-image">
                 <img
-                  src={item.product.images[0]} // Lấy ảnh sản phẩm
-                  alt={item.product.title} // Chắc chắn sử dụng tiêu đề sản phẩm cho alt
+                  src={item.product.images[0]}
+                  alt={item.product.title}
                   className="invoice-item-img"
                 />
               </div>
@@ -100,6 +103,22 @@ const Invoice = () => {
           {new Date(invoice.issuedAt).toLocaleString()}
         </p>
       </div>
+
+      {/* Nút đánh giá sản phẩm */}
+      <button
+        className="rate-button"
+        onClick={handleShowCommentForm}
+        style={{ display: invoice.status === "Completed" ? "block" : "none" }}
+      >
+        Đánh giá sản phẩm
+      </button>
+
+      {/* Hiển thị form đánh giá khi người dùng nhấn nút */}
+      {showCommentForm && (
+        <CommentForm
+          productId={selectedCartItems[0]?.product._id} // Giả sử bạn chỉ đánh giá sản phẩm đầu tiên trong hóa đơn
+        />
+      )}
     </div>
   );
 };

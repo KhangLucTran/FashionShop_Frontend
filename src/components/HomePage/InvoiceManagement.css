@@ -1,0 +1,197 @@
+/* Danh sách hóa đơn */
+.admin-home__invoice-list {
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Dòng dữ liệu trong danh sách hóa đơn */
+.admin-home__invoice-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng hover cho mục hóa đơn */
+.admin-home__invoice-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tổng số tiền */
+.admin-home__total-income {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.admin-home__total-income span {
+  color: #007bff;
+  font-size: 20px;
+}
+
+/* Mã hóa đơn */
+.admin-home__invoice-item span:first-child {
+  font-weight: bold;
+  color: #0073e6;
+}
+
+/* Trạng thái */
+.admin-home__invoice-item .status {
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+}
+
+/* Trạng thái "Completed" */
+.admin-home__invoice-item .status.Completed {
+  background-color: #28a745; /* Xanh lá cho trạng thái Completed */
+}
+
+/* Trạng thái "Pending" */
+.admin-home__invoice-item .status.Pending {
+  background-color: #dc3545; /* Màu đỏ cho trạng thái Pending */
+}
+
+/* Nút xem chi tiết */
+.admin-home__invoice-item button {
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hiệu ứng hover nút */
+.admin-home__invoice-item button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Hiệu ứng focus và active */
+.admin-home__invoice-item button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+}
+
+.admin-home__invoice-item button:active {
+  background-color: #004085;
+}
+
+/* Chi tiết hóa đơn */
+.admin-home__invoice-detail {
+  padding: 25px;
+  margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề chi tiết hóa đơn */
+.admin-home__invoice-detail h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+/* Dòng dữ liệu chi tiết hóa đơn */
+.admin-home__invoice-detail .detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #555;
+  border-bottom: 1px solid #eee;
+}
+
+/* Dòng cuối không có border */
+.admin-home__invoice-detail .detail-item:last-child {
+  border-bottom: none;
+}
+
+/* Label trong chi tiết hóa đơn */
+.admin-home__invoice-detail .detail-item span:first-child {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Giá trị trong chi tiết hóa đơn */
+.admin-home__invoice-detail .detail-item span:last-child {
+  font-weight: normal;
+  color: #333;
+}
+
+/* Tăng độ tương phản cho danh sách */
+.admin-home__invoice-list-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+/* Tối ưu responsive */
+@media (max-width: 768px) {
+  .admin-home__invoice-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .admin-home__invoice-item button {
+    margin-top: 10px;
+    align-self: flex-end;
+  }
+
+  .admin-home__invoice-detail {
+    padding: 15px;
+  }
+
+  .admin-home__total-income span {
+    font-size: 18px;
+  }
+}
+/* Danh sách hóa đơn với thanh cuộn khi có nhiều hơn 10 dòng */
+.admin-home__invoice-list {
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+  max-height: 500px; /* Điều chỉnh chiều cao tối đa */
+  overflow-y: auto; /* Kích hoạt thanh cuộn khi nội dung vượt quá chiều cao */
+}
+/* Thanh cuộn với kiểu dáng đẹp */
+.admin-home__invoice-list::-webkit-scrollbar {
+  width: 8px; /* Chiều rộng của thanh cuộn */
+}
+
+.admin-home__invoice-list::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 10px;
+}
+
+.admin-home__invoice-list::-webkit-scrollbar-thumb:hover {
+  background-color: #0056b3;
+}
+
+.admin-home__invoice-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}

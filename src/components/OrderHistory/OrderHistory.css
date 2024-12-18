@@ -1,0 +1,122 @@
+/* OrderHistory.css */
+.order-history-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(145deg, #f3f4f7, #e9eff1);
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .order-history-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #333;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-history-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .order-history-item {
+    border: 1px solid #e0e0e0;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #ffffff, #f4f4f4);
+  }
+  
+  .order-history-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #f4f7fb, #ffffff);
+  }
+  
+  .order-history-id,
+  .order-history-date,
+  .order-history-total,
+  .order-history-status {
+    margin: 12px 0;
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  .order-history-id {
+    font-size: 1.3rem;
+    color: #1e88e5;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  
+  .order-history-status {
+    font-size: 1rem;
+    color: #4caf50;
+    font-weight: 500;
+  }
+  
+  .order-history-line-items,
+  .order-history-products {
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .order-history-line-item,
+  .order-history-product {
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 0.95rem;
+  }
+  
+  .order-history-no-items {
+    color: #999;
+    font-style: italic;
+  }
+  
+  .order-history-empty {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #999;
+    margin-top: 40px;
+    font-style: italic;
+  }
+  
+  @media (max-width: 768px) {
+    .order-history-container {
+      padding: 20px;
+    }
+  
+    .order-history-item {
+      padding: 20px;
+    }
+  
+    .order-history-title {
+      font-size: 1.6rem;
+    }
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

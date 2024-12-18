@@ -84,16 +84,16 @@ export const Home = () => {
               </span>
             </h1>
             <p class="intro-text">
-              Welcome to <span class="letter">L</span>
+              Chào mừng đến với <span class="letter">L</span>
               <span class="letter">e</span>
               <span class="letter">v</span>
               <span class="letter">e</span>
               <span class="letter">n</span>
               <span class="letter">t</span>
-              <span class="letter">s</span>– where your style begins! Explore
-              our exclusive collections and redefine your wardrobe with the
-              latest trends. Thank you for choosing us as your fashion
-              destination. Happy shopping!
+              <span class="letter">s</span>– nơi phong cách của bạn bắt đầu!
+              Khám phá bộ sưu tập độc quyền của chúng tôi và định nghĩa lại tủ
+              quần áo của bạn với xu hướng mới nhất. Cảm ơn bạn đã chọn chúng
+              tôi làm điểm đến thời trang của bạn. Chúc bạn mua sắm vui vẻ!
             </p>
           </div>
         </div>

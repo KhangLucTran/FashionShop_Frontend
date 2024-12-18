@@ -1,145 +1,164 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useReducer,
+  useRef,
+} from "react";
 import "./OtpPage.css";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  showSuccessToast,
+  showInfoToast,
+  showErrorToast,
+} from "../Toast/Toast";
+
+// Cấu hình mặc định
+const RESEND_TIME = 300; // Thời gian đếm ngược (5 phút)
+const OTP_LENGTH = 6; // Số ký tự OTP
+
+// Reducer để quản lý trạng thái OTP
+const otpReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_OTP":
+      return state.map((val, idx) =>
+        idx === action.index ? action.value : val
+      );
+    case "RESET":
+      return Array(OTP_LENGTH).fill("");
+    default:
+      return state;
+  }
+};
 
 const OtpPage = () => {
-  const [otp, setOtp] = useState(new Array(6).fill("")); // Lưu OTP dưới dạng mảng
-  const [timeLeft, setTimeLeft] = useState(300); // 5 phút (300 giây)
+  const [otp, dispatchOtp] = useReducer(otpReducer, Array(OTP_LENGTH).fill(""));
+  const [timeLeft, setTimeLeft] = useState(RESEND_TIME);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // Trạng thái loading
-  const location = useLocation(); // Dùng để lấy dữ liệu từ state
-  const email = location.state?.email; // Lấy email được truyền từ ForgotPassword
-  const navigate = useNavigate();
 
-  // Bộ đếm thời gian
+  const location = useLocation();
+  const email = location.state?.email || ""; // Email nhận từ ForgotPassword
+  const navigate = useNavigate();
+  const inputRefs = useRef([]); // Quản lý refs cho các ô OTP
+
+  // Đếm ngược thời gian
   useEffect(() => {
-    if (timeLeft > 0) {
-      const timer = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000);
-      return () => clearInterval(timer);
-    }
+    if (timeLeft <= 0) return;
+    const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
+    return () => clearInterval(timer);
   }, [timeLeft]);
 
-  // Hàm xử lí không nhập vào OTP
-  const handleChange = (value, index) => {
+  // Xử lý thay đổi giá trị OTP
+  const handleChange = useCallback((value, index) => {
     if (/^\d$/.test(value) || value === "") {
-      const newOtp = [...otp];
-      newOtp[index] = value; // Cập nhật giá trị cho ô hiện tại
-      setOtp(newOtp);
+      dispatchOtp({ type: "SET_OTP", index, value });
 
-      // Chuyển đến ô tiếp theo nếu nhập xong (không gắn giá trị cho ô sau)
-      if (value !== "" && index < otp.length - 1) {
-        document.getElementById(`otp-${index + 1}`).focus();
+      // Chuyển focus nếu nhập đúng và không phải ô cuối cùng
+      if (value && index < OTP_LENGTH - 1) {
+        inputRefs.current[index]?.focus();
       }
     }
-  };
+  }, []);
 
-  // Hàm focus khi nhấn OTP
-  const handleKeyDown = (event, index) => {
-    if (event.key === "Backspace" && otp[index] === "") {
-      if (index > 0) {
-        document.getElementById(`otp-${index - 1}`).focus();
+  // Xử lý nhấn phím Backspace
+  const handleKeyDown = useCallback(
+    (e, index) => {
+      if (e.key === "Backspace" && otp[index] === "" && index > 0) {
+        inputRefs.current[index - 1]?.focus();
       }
-    }
-  };
+    },
+    [otp]
+  );
 
-  // Hàm call API gửi lại mã OTP
-  const handleResend = async () => {
+  // Gửi lại mã OTP
+  const handleResend = useCallback(async () => {
     try {
       await axios.post("http://localhost:5000/api/auth/forgot-password", {
         email,
       });
-      alert("Mã OTP mới đã được gửi!");
-    } catch (err) {
+      showInfoToast("Mã OTP mới đã được gửi!");
+      dispatchOtp({ type: "RESET" });
+      setTimeLeft(RESEND_TIME);
+    } catch {
       setError("Không thể gửi lại mã OTP. Vui lòng thử lại sau.");
     }
-    setOtp(new Array(6).fill(""));
-    setTimeLeft(300);
-  };
+  }, [email]);
 
-  // Hàm Xử lí OTP
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError(""); // Reset lỗi
-    setLoading(true); // Hiển thị trạng thái loading
+  // Xử lý xác nhận OTP
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
 
-    // Tạo chuỗi OTP từ mảng
     const otpString = otp.join("");
-
-    // Kiểm tra OTP có đủ 6 chữ số chưa
-    if (otpString.length !== 6) {
+    if (otpString.length !== OTP_LENGTH) {
       setError("Vui lòng nhập đầy đủ mã OTP.");
-      setLoading(false);
       return;
     }
-    alert(`Mã OTP: ${otpString}`);
 
+    setLoading(true);
     try {
-      // Gửi API request
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/verify-otp",
-        {
-          email,
-          otp: otpString, // Truyền chuỗi OTP vào API
-        }
-      );
+      await axios.post("http://localhost:5000/api/auth/verify-otp", {
+        email,
+        otp: otpString,
+      });
 
-      console.log("API Response:", response.error);
-
-      // Xử lý thành công, có thể chuyển hướng hoặc thông báo
-      alert("Xác nhận thành công!");
-      navigate("/reset-password", { state: { email } });
+      showInfoToast("Mã OTP hợp lệ!");
+      setTimeout(() => {
+        showSuccessToast("Xác nhận thành công!");
+        setTimeout(
+          () => navigate("/reset-password", { state: { email } }),
+          2000
+        );
+      }, 2000);
     } catch (err) {
-      // Xử lý lỗi nếu API thất bại
-      console.error(err);
+      showErrorToast("Mã OTP không hợp lệ!");
       setError(
         err.response?.data?.message || "Đã xảy ra lỗi, vui lòng thử lại sau."
       );
     } finally {
-      setLoading(false); // Tắt trạng thái loading
+      setLoading(false);
     }
   };
 
-  // Hàm formatTime
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes}:${secs.toString().padStart(2, "0")}`;
-  };
+  // Định dạng thời gian
+  const formatTime = useCallback(() => {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  }, [timeLeft]);
 
   return (
     <div className="otp-form-container">
       <div className="otp-box">
         <h1>
-          Levents <span>&copy;</span>{" "}
+          Levents <span>&copy;</span>
         </h1>
-        <p className="timer">Thời gian còn lại: {formatTime(timeLeft)}</p>
-        <p className="timer_text">Vui lòng nhập mã OTP của bạn tại đây: </p>
+        <p className="timer">Thời gian còn lại: {formatTime()}</p>
+        <p className="timer_text">Vui lòng nhập mã OTP của bạn:</p>
         <form onSubmit={handleSubmit} className="otp-form">
           <div className="otp-input-container">
             {otp.map((digit, index) => (
               <input
                 key={index}
-                id={`otp-${index}`}
+                ref={(el) => (inputRefs.current[index] = el)} // Gắn ref vào ô nhập
                 type="text"
                 className="otp-input"
                 value={digit}
                 maxLength="1"
                 onChange={(e) => handleChange(e.target.value, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
-                disabled={timeLeft === 0 || loading}
+                disabled={loading || timeLeft === 0}
+                autoFocus={index === 0}
               />
             ))}
           </div>
-          {error && <p className="error-message">{error}</p>}{" "}
-          {/* Hiển thị lỗi */}
+          {error && <p className="error-message">{error}</p>}
           <button
             type="submit"
             className="btn btn-primary w-100 mt-3"
-            disabled={timeLeft === 0 || loading}
+            disabled={loading || timeLeft === 0}
           >
             {loading ? "Đang xử lý..." : "Xác nhận"}
           </button>
@@ -147,7 +166,7 @@ const OtpPage = () => {
             type="button"
             className="btn btn-outline-secondary w-100 mt-3"
             onClick={handleResend}
-            disabled={loading || timeLeft > 0} // Ẩn nút khi đang đếm ngược
+            disabled={loading || timeLeft > 0}
           >
             Gửi lại mã OTP
           </button>

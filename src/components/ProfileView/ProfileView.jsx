@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
-import axios from "axios";
 import "./ProfileView.css";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../../services/localStorageService";
 import Footer from "../Footer/Footer";
-import { getUserData, updateAvatar } from "../../services/APIServices"; // Import API functions
+import { getUserData, updateAvatar } from "../../services/APIServices";
+import { showSuccessToast } from "../Toast/Toast";
 
 const ProfileView = () => {
   const navigate = useNavigate();
@@ -37,6 +37,7 @@ const ProfileView = () => {
     }
   }, [navigate]);
 
+  // Chỉ gọi API khi không có userData hoặc khi token đã hết hạn
   useEffect(() => {
     if (!userData) {
       fetchUserData();
@@ -90,6 +91,7 @@ const ProfileView = () => {
       }));
       setAvatar(null); // Xóa avatar đã chọn sau khi tải lên thành công
       setIsUploading(false); // Tải lên thành công, dừng loading
+      showSuccessToast("Đổi ảnh đại diện thành công!"); // Thông báo
       // Chuyển hướng lại trang profile sau khi tải ảnh thành công
       navigate("/profile-view");
     } catch (err) {

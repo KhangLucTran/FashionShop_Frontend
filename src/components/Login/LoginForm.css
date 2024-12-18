@@ -260,3 +260,18 @@ input:hover::placeholder {
     font-size: 0.9em;
     margin-top: 4px;
   }
+  .password-container {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .password-container{
+    width: 100%;
+  }

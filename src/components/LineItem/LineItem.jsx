@@ -44,8 +44,8 @@ const LineItem = ({
         />
       </div>
       <img
-        src={product.images[0]}
-        alt={product.title}
+        src={product?.images?.[0] || "default-image-url"}
+        alt={product?.title || "No title available"}
         className="line-item-image"
       />
       <div className="line-item-info">

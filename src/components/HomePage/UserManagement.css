@@ -1,0 +1,321 @@
+/* Bao quát toàn bộ UserManagement */
+.admin-home__user-management {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tiêu đề */
+  .admin-home__section-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Khu vực tìm kiếm */
+  .admin-home__search {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .admin-home__search label {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .admin-home__search input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .admin-home__search input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Danh sách người dùng */
+  .admin-home__user-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 400px;  /* Đặt chiều cao tối đa cho danh sách */
+    overflow-y: auto;  /* Hiển thị thanh cuộn khi nội dung vượt quá chiều cao */
+  }
+  
+  /* Mỗi item người dùng */
+  .admin-home__user-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;  /* Chia thành 3 cột: thông tin, thông tin, và nút */
+    align-items: center;
+    padding: 12px 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 14px;
+  }
+  
+  .admin-home__user-item:hover {
+    background-color: #f0f8ff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Căn chỉnh thông tin người dùng */
+  .admin-home__user-item span {
+    color: #333;
+  }
+  
+  /* Căn chỉnh cho các phần tử trong dòng dữ liệu */
+  .admin-home__user-item span:first-child {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .admin-home__user-item span:last-child {
+    text-align: right;
+  }
+  
+  .admin-home__user-item span {
+    padding-right: 15px;
+    word-wrap: break-word;  /* Đảm bảo văn bản không bị tràn */
+  }
+  
+  /* Nút xóa người dùng */
+  .admin-home__delete-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .admin-home__delete-btn:hover {
+    background-color: #c82333;
+  }
+  
+  .admin-home__delete-btn:active {
+    background-color: #bd2130;
+  }
+  
+  .admin-home__delete-btn:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(220, 53, 69, 0.5);
+  }
+  
+  /* Cải thiện chiều cao và căn chỉnh các cột */
+  .admin-home__user-item .admin-home__delete-btn {
+    margin-left: 20px;
+    width: 80px;
+    text-align: center;
+  }
+  /* Hiển thị tổng số lượng người dùng */
+.admin-home__total-users {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Style cho user details modal */
+.user-details-modal {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    height: 500px;
+    margin: 20px auto;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .user-details-modal:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Style cho hình ảnh avatar trong user details */
+  .user-details-modal__avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #4CAF50;
+  }
+  
+  /* Style cho các thông tin chi tiết khác */
+  .user-details-modal p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .user-details-modal p:hover {
+    color: #4CAF50;
+    cursor: pointer;
+  }
+  
+  /* Style cho tiêu đề thông tin người dùng */
+  .user-details-modal h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Tạo các đoạn thông tin chi tiết có hiệu ứng hover */
+  .user-details-modal p span {
+    font-weight: 600;
+    color: #333;
+    text-transform: capitalize;
+  }
+  
+  /* Cải thiện các thông tin phụ với màu sắc nhấn mạnh */
+  .user-details-modal p.email {
+    font-size: 18px;
+    color: #4CAF50;
+  }
+  
+  /* Style cho các thông tin chi tiết khi mouse hover vào */
+  .user-details-modal p:hover {
+    background-color: #eaf4e5;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  /* Cải thiện khoảng cách và bố cục */
+  .user-details-modal__info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 12px;
+  }
+  /* Style cho nút đóng trong modal */
+.user-details-modal__close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-details-modal__close-btn:hover {
+    background-color: #ff1a1a;
+  }
+  
+  .user-details-modal__close-btn:focus {
+    outline: none;
+    box-shadow: 0 0 3px rgba(255, 0, 0, 0.5);
+  }
+  /* Form thêm user */
+.add-user-form {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Tiêu đề của form */
+.add-user-form__title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Các trường thông tin */
+.add-user-form__field {
+  margin-bottom: 15px;
+}
+
+.add-user-form__label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.add-user-form__input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-user-form__input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Nút submit */
+.add-user-form__submit-btn {
+  display: block;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-user-form__submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.add-user-form__submit-btn:active {
+  background-color: #004494;
+}
+
+.add-user-form__submit-btn:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Hiệu ứng khi form xuất hiện */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

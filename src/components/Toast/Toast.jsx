@@ -11,6 +11,8 @@ export const showSuccessToast = (message) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
+    theme: "colored",
+    transition: Bounce,
   });
 };
 
@@ -56,14 +58,19 @@ export const showPromiseToast = async (promise, messages) => {
         transition: Bounce, // Sử dụng hiệu ứng bounce cho success
       },
       error: {
-        render: messages.success,
-        theme: "colored", // Sử dụng theme màu sắc cho success
-        transition: Bounce, // Sử dụng hiệu ứng bounce cho success
+        render: messages.error,
+        theme: "colored", // Sử dụng theme màu sắc cho error
+        transition: Bounce, // Sử dụng hiệu ứng bounce cho error
       },
     });
+
     // Nếu có thông báo "info", hiển thị sau khi thành công
     if (messages.info) {
       showInfoToast(messages.info);
     }
-  } catch (error) {}
+  } catch (error) {
+    // Xử lý lỗi nếu có
+    console.error("Error in showPromiseToast:", error);
+    showErrorToast("Đã xảy ra lỗi, vui lòng thử lại sau!");
+  }
 };

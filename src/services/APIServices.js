@@ -114,6 +114,21 @@ export const getUserData = async (token) => {
     throw error;
   }
 };
+export const deleteUser = async (userId, token) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:5000/api/user/admin/delete/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Truyền token trong header
+        },
+      }
+    );
+    return response.data; // Trả về dữ liệu của phản hồi
+  } catch (error) {
+    throw new Error("Không thể xóa người dùng. Vui lòng thử lại.");
+  }
+};
 
 // Hàm cập nhật avatar
 export const updateAvatar = async (avatar, token) => {
@@ -177,7 +192,7 @@ export const addLineItemToCart = async (
 ) => {
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/lineitem/add-lineitem`,
+      `${API_BASE_URL}/lineitem/add/lineitem`,
       {
         product: productId,
         quantity: quantity,
@@ -210,6 +225,26 @@ export const getUserCart = async (token) => {
     throw error;
   }
 };
+export const addProduct = async (formData, token) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/product/add-product`,
+      formData, // Truyền formData thay vì productData
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          // Axios tự động xử lý "Content-Type" khi gửi formData
+        },
+      }
+    );
+    return response.data; // Trả về dữ liệu sản phẩm vừa được thêm
+  } catch (error) {
+    console.error("Error adding product:", error);
+    throw new Error(
+      error.response?.data?.message || "Không thể thêm sản phẩm."
+    );
+  }
+};
 
 // Lấy thông tin chi tiết của một lineItem
 export const getLineItem = async (itemId, token) => {
@@ -226,6 +261,40 @@ export const getLineItem = async (itemId, token) => {
   } catch (error) {
     console.error("Lỗi khi lấy thông tin lineItem:", error.message);
     throw error;
+  }
+};
+// Hàm xóa sản phẩm theo title
+export const deleteProductByTitle = async (title, token) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:5000/api/product/delete-product-title/${title}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Thêm token vào header
+        },
+      }
+    );
+    return response.data;
+  } catch (err) {
+    console.error("Error deleting product:", err);
+    throw new Error("Xóa sản phẩm thất bại.");
+  }
+};
+// Hàm xóa sản phẩm theo title
+export const deleteProductById = async (id, token) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:5000/api/product/delete-product/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Thêm token vào header
+        },
+      }
+    );
+    return response.data;
+  } catch (err) {
+    console.error("Error deleting product:", err);
+    throw new Error("Xóa sản phẩm thất bại.");
   }
 };
 
@@ -250,14 +319,60 @@ export const deleteLineItemFromCart = async (cartId, lineItemId, token) => {
 // Hàm lấy tất cả người dùng (Admin)
 export const getAllUsers = async (token) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/admin/users`, {
+    const response = await axios.get(`${API_BASE_URL}/user/admin/users`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data.users; // Giả sử API trả về danh sách trong `users`
+    return response.data; // Giả sử API trả về danh sách trong `users`
   } catch (error) {
     console.error("Error fetching all users:", error);
     throw new Error(
       error.response?.data?.message || "Không thể lấy danh sách người dùng."
     );
+  }
+};
+export const getAllInvoices = async (token) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/invoice/`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data; // Giả sử API trả về danh sách trong `users`
+  } catch (error) {
+    console.error("Error fetching all users:", error);
+    throw new Error(
+      error.response?.data?.message || "Không thể lấy danh sách người dùng."
+    );
+  }
+};
+// Lấy tất cả invoice theo userId
+export const getAlInvoicesByUserId = async (token) => {
+  try {
+    const response = await axios.get(
+      `${API_BASE_URL}/invoice/get-invoice-user`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return response.data; // Giả sử API trả về danh sách trong `users`
+  } catch (error) {
+    console.error("Error fetching all users:", error);
+    throw new Error(
+      error.response?.data?.message || "Không thể lấy danh sách người dùng."
+    );
+  }
+};
+
+// Hàm lấy thông tin người dùng theo id
+export const getUserById = async (userId, token) => {
+  try {
+    const response = await axios.get(
+      `${API_BASE_URL}/user/get-users/${userId}`, // Đường dẫn API lấy người dùng theo id
+      {
+        headers: { Authorization: `Bearer ${token}` }, // Truyền token trong header
+      }
+    );
+    return response.data.data; // Trả về dữ liệu người dùng
+  } catch (error) {
+    console.error("Lỗi khi lấy thông tin người dùng:", error);
+    throw new Error("Không thể lấy thông tin người dùng.");
   }
 };

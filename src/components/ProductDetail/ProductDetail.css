@@ -236,3 +236,49 @@
 .heart-icon:hover {
   color: red;
 }
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.star-rating {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.star-icon {
+  font-size: 1.5rem;
+  color: #d3d3d3; /* Màu xám nhạt cho các sao chưa được chọn */
+  transition: color 0.2s ease;
+}
+
+.star-icon.filled {
+  color: #e91e63; /* Màu vàng cho các sao đã chọn */
+}
+
+.star-rating .star-icon:hover {
+  color: #f5a623; /* Hiệu ứng khi hover vào các sao */
+}
+
+.rating-text {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  color: #000;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .star-rating {
+    font-size: 1.2rem;
+  }
+
+  .rating-text {
+    font-size: 1rem;
+  }
+}

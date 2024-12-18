@@ -1,0 +1,149 @@
+/* comment-form.css */
+
+/* Container của form bình luận */
+.comment-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.comment-form:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Tiêu đề của form */
+.comment-form h3 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Label cho các trường */
+.comment-form label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Select và Textarea */
+.comment-form select,
+.comment-form textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.comment-form select:focus,
+.comment-form textarea:focus {
+  border-color: #0073e6;
+  outline: none;
+}
+
+/* Textarea cụ thể */
+.comment-form textarea {
+  resize: vertical;
+  height: 120px;
+}
+
+/* Nút gửi bình luận */
+.comment-form button {
+  width: 100%;
+  padding: 14px;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.comment-form button:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+}
+
+.comment-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Các ngôi sao đánh giá */
+.rating-stars {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 32px;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s ease, transform 0.2s ease;
+  margin-right: 8px;
+}
+
+.star.filled {
+  color: #ffd700; /* Màu vàng khi sao được chọn */
+}
+
+.star:hover,
+.star.filled:hover {
+  color: #ffb300;
+  transform: scale(1.2);
+}
+
+/* Hiệu ứng khi hover vào sao */
+.star:active {
+  transform: scale(1.1);
+}
+.comment-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.comment-form textarea {
+  width: 100%;
+  height: 120px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.comment-form button {
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.comment-form button:hover {
+  background-color: #005bb5;
+}

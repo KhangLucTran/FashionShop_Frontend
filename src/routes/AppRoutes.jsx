@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { LoginForm } from "../components/Login/LoginForm";
 import { Home } from "../components/HomePage/Home";
-import { AdminHome } from "../components/HomePage/AdminHome";
+import AdminHome from "../components/HomePage/AdminHome";
 import OtpPage from "../components/OTP/OtpPage";
 import About from "../components/About/About";
 import Profile from "../components/Profile/Profile";
@@ -10,10 +10,14 @@ import ResetPassword from "../components/ResetPassword/ResetPassword";
 import ProfileView from "../components/ProfileView/ProfileView";
 import Product from "../components/Product/Prodcut";
 import ProductDetail from "../components/ProductDetail/ProductDetail";
-import { CartProvider } from "../components/Card/cardContext"; // Import CartProvider
+import { CartProvider } from "../components/Card/cardContext";
 import Card from "../components/Card/Card";
 import Checkout from "../components/Checkout/Checkout";
 import Invoice from "../components/Invoice/Invoice";
+import Comment from "../components/Comment/Comment";
+import Favorite from "../components/Favorite/Favorite";
+import CommentForm from "../components/CommentForm/CommentForm";
+import OrderHistory from "../components/OrderHistory/OrderHistory";
 
 const AppRoutes = () => {
   return (
@@ -25,8 +29,11 @@ const AppRoutes = () => {
         <Route path="/otp" element={<OtpPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/favorite" element={<Favorite />} />
         <Route path="/invoice/:invoiceId" element={<Invoice />} />
-
+        <Route path="/comment/:productId" element={<Comment />} />
+        <Route path="/order-history" element={<OrderHistory />} />
+        <Route path="/comment-form/:productId" element={<CommentForm />} />
         {/* Chỉ bọc các route liên quan đến giỏ hàng với CartProvider */}
         <Route
           path="/product-detail/:id"

@@ -93,23 +93,23 @@ const Header = () => {
       <nav className="nav">
         <ul>
           <li>
-            <a href="/home">Home</a>
+            <a href="/home">Trang chủ</a>
           </li>
           <li>
-            <a href="/about">About</a>
+            <a href="/about">Thông tin</a>
           </li>
           <li>
-            <a href="#services">Services</a>
+            <a href="#services">Dịch vụ</a>
           </li>
           <li>
-            <a href="#contact">Contact</a>
+            <a href="#contact">Liên hệ</a>
           </li>
         </ul>
       </nav>
       <div className="nav_icon">
         {isAuthenticated && (
           <div className="account-menu-container">
-            <a href="#">
+            <a href="/favorite">
               <FaRegHeart />
             </a>
             <a href="#" onClick={handleGoToCart}>
@@ -121,8 +121,14 @@ const Header = () => {
             {isMenuOpen && (
               <div className="dropdown-menu">
                 <ul>
-                  <li onClick={() => handleClick("/profile-view")}>Profile</li>
-                  <li onClick={handleLogout}>Logout</li>
+                  <li onClick={() => handleClick("/profile-view")}>
+                    Trang cá nhân
+                  </li>
+                  <li onClick={() => handleClick("/order-history")}>
+                    Lịch sử mua hàng
+                  </li>{" "}
+                  {/* Thêm mục Order History */}
+                  <li onClick={handleLogout}>Đăng xuất</li>
                 </ul>
               </div>
             )}
@@ -132,10 +138,10 @@ const Header = () => {
       {!isAuthenticated && (
         <div className="auth-buttons">
           <button className="login" onClick={() => handleClick("/login")}>
-            Login
+            Đăng nhập
           </button>
           <button className="signup" onClick={() => handleClick("/login")}>
-            Sign up
+            Đăng xuất
           </button>
         </div>
       )}
