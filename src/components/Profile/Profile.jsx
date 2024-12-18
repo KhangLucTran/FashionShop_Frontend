@@ -11,6 +11,7 @@ import { debounce } from "lodash";
 import "./Profile.css";
 import Footer from "../Footer/Footer.jsx";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import { showSuccessToast } from "../Toast/Toast.jsx";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Profile = () => {
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
 
-  // Fetch provinces with caching and loading state
+  // Lấy các tỉnh có trạng thái lưu trữ đệm và tải
   useEffect(() => {
     const fetchProvinces = async () => {
       const cachedProvinces = localStorage.getItem("provinces");
@@ -57,7 +58,7 @@ const Profile = () => {
     fetchProvinces();
   }, [token]);
 
-  // Use useCallback to avoid re-creating the debounce function on every render
+  // Sử dụng useCallback để tránh tạo lại hàm debounce trên mỗi lần kết xuất
   const fetchDistricts = useCallback(
     debounce(async (provinceId) => {
       if (provinceId) {
@@ -73,16 +74,16 @@ const Profile = () => {
       } else {
         setDistricts([]);
       }
-    }, 500), // Debounce time of 500ms
-    [token] // Ensure token is included in the dependencies
+    }, 500), // Thời gian phản hồi 500ms
+    [token]
   );
 
-  // Fetch districts when province changes
+  // Lấy quận khi tỉnh thay đổi
   useEffect(() => {
     fetchDistricts(formData.province);
   }, [formData.province, fetchDistricts]);
 
-  // Check age based on birthday
+  // Kiểm tra tuổi dựa trên Ngày sinh nhập vào.
   useEffect(() => {
     const checkAge = () => {
       if (formData.birthday) {
@@ -111,7 +112,7 @@ const Profile = () => {
     checkAge();
   }, [formData.birthday]);
 
-  // Phone validation
+  // Kiểm tra định dạng số điện thoại.
   const validatePhone = useCallback((phone) => {
     const regex = /^0\d{9}$/;
     if (!regex.test(phone)) {
@@ -127,7 +128,7 @@ const Profile = () => {
     }
   }, []);
 
-  // Username validation
+  // Kiểm tra định dạng Tên tài khoản.
   const validateUsername = useCallback((username) => {
     if (!username.trim()) {
       setErrors((prev) => ({
@@ -149,7 +150,7 @@ const Profile = () => {
       [name]: value,
     }));
 
-    // Validate the relevant fields on change
+    // Xác thực các trường có liên quan khi thay đổi
     if (name === "mobilePhone") validatePhone(value);
     if (name === "username") validateUsername(value);
   };
@@ -169,6 +170,7 @@ const Profile = () => {
     try {
       setLoading(true);
       await updateProfile(updateData, token);
+      showSuccessToast("Cập nhật thông tin thành công!");
       navigate("/profile-view");
     } catch (error) {
       console.error("Cập nhật thất bại:", error);

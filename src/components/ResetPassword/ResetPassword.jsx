@@ -27,6 +27,7 @@ const ResetPassword = () => {
 
     if (newPassword !== confirmPassword) {
       setError("Mật khẩu xác nhận không khớp.");
+      showErrorToast("Mật khẩu xác nhận không khớp.!");
       setLoading(false);
       return;
     }
